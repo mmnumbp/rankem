@@ -1,4 +1,4 @@
-"""Usage: rankit.py [-i DELIM] [-x | -d DELIM] ITEMS_FILE
+"""Usage: rankem.py [-i DELIM] [-x | -d DELIM] ITEMS_FILE
 
 Rank a list of items from best to worst by repeatedly picking the best of two
     
@@ -10,13 +10,13 @@ Options:
 
 Examples:
 
-python rankit.py -i '#' -d '-' items.txt
+python rankem.py -i '#' -d '-' items.txt
 items.txt:
 #   item 1 - description 1 
 #   item 2 - description 2
 #   item 3 - description 3
 
-python rankit.py items2.txt
+python rankem.py items2.txt
 items2.txt:
 item 1
 ~
