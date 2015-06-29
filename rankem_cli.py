@@ -1,6 +1,6 @@
 """Usage: rankem.py -x ITEM...
        rankem.py [-i] (ITEM DESCRIPTION)...
-       rankem.py -f [-x|-i] [-l DELIIM] (ITEMS_FILE | -)
+       rankem.py [-x|-i] -f [-l DELIIM] (ITEMS_FILE | -)
        rankem.py -fj [-i] (JSON_FILE | -)
 
 Rank a list of items from best to worst by repeatedly picking the best of two.
@@ -23,19 +23,15 @@ Options:
     
     -h        --help                Display this help text
 
-Examples:
+Examples (stdin example may not work on windows):
     python rankem.py -x item1 item2 item3
     python rankem.py item1 "description 1" item2 "description 2"
-    python rankem.py file stuff.txt
+    python rankem.py --file -x stuff.txt
       stuff.txt:
         item 1
 
-          description 1
-
-          item 2
-
-          description 2
-    python rankem.py file -j stuff.json
+        item 2
+    python rankem.py --file -j stuff.json
       stuff.json:
           [{
             "name": "item 1",
@@ -45,6 +41,7 @@ Examples:
             "name": "item 2",
             "description": "description 2"
           }]
+    echo item 1 ~ description 1 ~ item 2 ~ description 2 | python rankem.py -f -l \~ -
 
 """
 
