@@ -23,7 +23,7 @@ Options:
     
     -h        --help                Display this help text
 
-Examples (stdin example may not work on windows):
+Examples:
     python rankem.py -x item1 item2 item3
     python rankem.py item1 "description 1" item2 "description 2"
     python rankem.py --file -x stuff.txt
@@ -41,7 +41,7 @@ Examples (stdin example may not work on windows):
             "name": "item 2",
             "description": "description 2"
           }]
-    echo item 1 ~ description 1 ~ item 2 ~ description 2 | python rankem.py -f -l \~ -
+    echo item 1 \~ description 1 \~ item 2 \~ description 2 | python rankem.py -f -l \~ -
 
 """
 
