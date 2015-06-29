@@ -1,7 +1,7 @@
 """Usage: rankem.py -x ITEM...
        rankem.py [-i] (ITEM DESCRIPTION)...
        rankem.py -f [-x|-i] [-l DELIIM] (ITEMS_FILE | -)
-       rankem.py -fj [-i] JSON_FILE
+       rankem.py -fj [-i] (JSON_FILE | -)
 
 Rank a list of items from best to worst by repeatedly picking the best of two.
     
