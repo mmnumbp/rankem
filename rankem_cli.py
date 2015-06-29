@@ -6,13 +6,21 @@
 Rank a list of items from best to worst by repeatedly picking the best of two.
     
 Options:
-    -x        --noDesc              Parse as though there are no descriptions
-    -i        --ignoreDesc          Parse with descriptions, but ignore them
+    -x        --noDesc              Indicate that there are no descriptions 
+                                    specified in the input
+    
+    -i        --ignoreDesc          Indicate that there are descriptions 
+                                    specified in the input, but that they
+                                    should be ignored
+
     -f        --use-file            Load items from file
+    
     -l DELIM  --delimiter DELIM     Set which sequence of characters delimits 
                                     items and descriptions. Defaults to double
                                     newline. Whitespace will be trimmed.
+    
     -j        --json                Read items from a json file
+    
     -h        --help                Display this help text
 
 Examples:
