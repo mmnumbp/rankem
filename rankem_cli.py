@@ -46,6 +46,7 @@ Examples:
 """
 
 import textwrap
+import itertools
 
 from rankem import Item, Rankem
 from docopt import docopt
@@ -57,11 +58,37 @@ def rank(rankem):
 def present(items):
     width = terminalsize.get_terminal_size()[0]
     columnWidth = int(width/2 - 1)
+    # Center item names and print
     columnCenter = ('{:^' + str(columnWidth) + '}').format
     item1Str = columnCenter("Option 1: " + items[0].name())
     item2Str = columnCenter("Option 2: " + items[1].name())
-
     print(item1Str + item2Str)
+
+    ### Prepare description formatting
+    desc1wrap = textwrap.wrap(items[0].description(), columnWidth)
+    desc2wrap = textwrap.wrap(items[1].description(), columnWidth)
+        
+    ## Make both description line lists the same length 
+    if len(desc1wrap) < len(desc2wrap):
+        while len(desc1wrap) < len(desc2wrap):
+            desc1wrap.append('')
+    elif len(desc2wrap) <  len(desc1wrap):
+        while len(desc2wrap) < len(desc1wrap):
+            desc2wrap.append('')
+    else:
+        # Descriptions take the same number of lines to print, do nothing
+        pass
+
+    ## Formatting to print side-by-side
+    addWhitespaceToColumnWidth = lambda s: s+' '*(columnWidth-len(s)+1)
+    desc1wrap = list(map(addWhitespaceToColumnWidth, desc1wrap))
+    desc2wrap = list([line+'\n' for line in desc2wrap])
+
+    # Intersperse lines, like so:
+    # [desc1[0], desc2[0], desc1[1], desc2[1]...]
+    finalOutputList = list(
+        itertools.chain.from_iterable(zip(desc1wrap, desc2wrap)) )
+    print(''.join(finalOutputList))
 
 
 def massage(opts):
