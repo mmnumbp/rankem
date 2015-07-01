@@ -53,15 +53,40 @@ from docopt import docopt
 from lib import terminalsize
 
 def rank(rankem):
-    present(rankem.next())
+    choices = rankem.next()
+    while(choices is not None):
+        print()
+        present(choices)
+        print()
+        print("(a)/(b)/(q)uit/(s)kip: ")
+        a = set(['a', '1', 'left', 'l'])
+        b = set(['b', '2', 'right', 'r'])
+        q = set(['q', 'quit', 'exit', 'save'])
+        s = set(['s', 'skip'])
+        
+        choice = ''
+        while choice not in (a | b | q | s):
+            choice = input().lower()
+        
+        if choice in a:
+            rankem.choose(choices[0])
+        elif choice in b:
+            rankem.choose(choices[1])
+        elif choice in q:
+            die()
+
+        # else is when choice is in (s)kip
+        choices = rankem.next()
+    return rankem.ranking()
+
 
 def present(items):
     width = terminalsize.get_terminal_size()[0]
     columnWidth = int(width/2 - 1)
     # Center item names and print
     columnCenter = ('{:^' + str(columnWidth) + '}').format
-    item1Str = columnCenter("Option 1: " + items[0].name())
-    item2Str = columnCenter("Option 2: " + items[1].name())
+    item1Str = columnCenter("Option A: " + items[0].name())
+    item2Str = columnCenter("Option B: " + items[1].name())
     print(item1Str + item2Str)
 
     ### Prepare description formatting
@@ -90,6 +115,9 @@ def present(items):
         itertools.chain.from_iterable(zip(desc1wrap, desc2wrap)) )
     print(''.join(finalOutputList))
 
+def displayFinalRanking(ranking):
+    for item in ranking:
+        print(item.name())
 
 def massage(opts):
     items = None
@@ -106,11 +134,12 @@ def massage(opts):
             descriptions = opts['DESCRIPTION']
     return [Item(i, d) for i, d in zip(items, descriptions)]
 
+def die():
+    exit(0)
+
 if __name__ == '__main__':
     opts = docopt(__doc__)
-    
-    print(opts)
-    rank(Rankem(massage(opts)))
+    displayFinalRanking(rank(Rankem(massage(opts))))
 
     #fileStr = ''
     #with open(opts['ITEMS_FILE'], 'r') as iFile:
