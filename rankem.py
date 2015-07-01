@@ -10,8 +10,8 @@ score.
 """
 class Item(object):
     def __init__(self, name, description, rank=1):
-        self._name = name
-        self._description = description
+        self._name = name.strip(' \t\n\r')
+        self._description = description.strip(' \t\n\r')
         self._rank = rank
     def name(self):
         return self._name
