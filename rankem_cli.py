@@ -116,6 +116,8 @@ def present(items):
     print(''.join(finalOutputList))
 
 def displayFinalRanking(ranking):
+    print()
+    print("Final ranking:")
     for item in ranking:
         print(item.name())
 
