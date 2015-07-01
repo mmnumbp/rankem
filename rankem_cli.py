@@ -45,12 +45,48 @@ Examples:
 
 """
 
+import textwrap
+
+from rankem import Item, Rankem
 from docopt import docopt
+from lib import terminalsize
+
+def rank(rankem):
+    present(rankem.next())
+
+def present(items):
+    width = terminalsize.get_terminal_size()[0]
+    columnWidth = int(width/2 - 1)
+    columnCenter = ('{:^' + str(columnWidth) + '}').format
+    item1Str = columnCenter("Option 1: " + items[0].name())
+    item2Str = columnCenter("Option 2: " + items[1].name())
+
+    print(item1Str + item2Str)
+
+
+def massage(opts):
+    items = None
+    descriptions = None
+    if opts['-f']:
+        # Items/descriptions are in a file
+        pass
+    else:
+        # Items/descriptions are arguments
+        items = opts['ITEM']
+        if opts['-x'] or opts['-i']:
+            descriptions = ['' for i in opts['ITEM']]
+        else:
+            descriptions = opts['DESCRIPTION']
+    return [Item(i, d) for i, d in zip(items, descriptions)]
 
 if __name__ == '__main__':
     opts = docopt(__doc__)
+    
     print(opts)
+    rank(Rankem(massage(opts)))
+
     #fileStr = ''
     #with open(opts['ITEMS_FILE'], 'r') as iFile:
     #    fileStr = iFile.read()
     
+
