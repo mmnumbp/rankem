@@ -4,6 +4,7 @@
        rankem.py -fj [-i] (JSON_FILE | -)
 
 Rank a list of items from best to worst by repeatedly picking the best of two.
+Loading a list from a file isn't working yet.
     
 Options:
     -x        --noDesc              Indicate that there are no descriptions 
@@ -126,7 +127,7 @@ def massage(opts):
     descriptions = None
     if opts['-f']:
         # Items/descriptions are in a file
-        pass
+        pass # STUB!
     else:
         # Items/descriptions are arguments
         items = opts['ITEM']
