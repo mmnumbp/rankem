@@ -3,7 +3,7 @@
 Script and python module for ranking lists by presenting the user
 with a series of choices between two items.
 
-See it in action: http://asciinema.org/a/54uifei9isrmcz08jem9nmq8n
+<a href="http://asciinema.org/a/54uifei9isrmcz08jem9nmq8n" target="_blank">See it in action</a>
 
 For now, this is how you run the cli version of rankem:
 
