@@ -74,7 +74,7 @@ class Rankem(object):
         # Remove rank keys, leaving only values (single-element sets)
         sortedRankSetList = [rankSet for rank, rankSet in byRankItemsList]
         # Unpack single-element sets
-        return list(map(set.pop, sortedRankSetList))
+        return list(map(set.pop, sortedRankSetList))[::-1]
 
 
 if __name__ == '__main__':
