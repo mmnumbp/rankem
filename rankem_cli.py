@@ -48,17 +48,21 @@ Examples:
 
 import textwrap
 import itertools
+import sys
 
 from rankem import Item, Rankem
 from docopt import docopt
 from lib import terminalsize
 
+if sys.version_info < (3, 0):
+    input = raw_input
+
 def rank(rankem):
     choices = rankem.next()
     while(choices is not None):
-        print()
+        print("")
         present(choices)
-        print()
+        print("")
         print("(a)/(b)/(q)uit/(s)kip: ")
         a = set(['a', '1', 'left', 'l'])
         b = set(['b', '2', 'right', 'r'])
@@ -117,7 +121,7 @@ def present(items):
     print(''.join(finalOutputList))
 
 def displayFinalRanking(ranking):
-    print()
+    print("")
     print("Final ranking:")
     for item in ranking:
         print(item.name())
