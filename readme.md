@@ -1,5 +1,10 @@
 # Rankem #
 
+Script and python module for ranking lists by presenting the user
+with a series of choices between two items.
+
+See it in action: http://asciinema.org/a/54uifei9isrmcz08jem9nmq8n
+
 For now, this is how you run the cli version of rankem:
 
 ```bash
